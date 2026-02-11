@@ -19,6 +19,14 @@ This project demonstrates an engaging way to explore classification datasets thr
 - 📈 **Performance Scoring**: Points awarded based on efficiency (fewer clues = more points)
 - 🖼️ **Visual Learning**: Species images revealed after answering
 
+### Project Context
+
+This project was developed as an educational tool to demonstrate:
+- Interactive data exploration with Gradio
+- Natural language generation from structured data
+- Progressive disclosure UX patterns
+- Session state management in web applications
+
 ---
 
 ## Quick Start
@@ -34,7 +42,7 @@ openpyxl  # For Excel file reading
 ### Installation
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/dagny099/guess-animal-gradio
 cd guess-animal-gradio
 
 # Install dependencies
@@ -115,6 +123,12 @@ Uses Gradio's `gr.State` for session persistence:
 ```
 Excel → Pandas DataFrame → Random Sampling → Option Generation → Clue Construction → UI Rendering
 ```
+**Known Limitations:**
+
+1. **Image URLs**: Some images may fail to load due to access restrictions (403 errors)
+2. **Dataset Size**: Categories require ≥4 entries for option generation
+3. **No Persistence**: Scores reset on browser refresh (no database backend)
+4. **Mobile Layout**: Radio buttons may stack on narrow screens
 
 ---
 
@@ -122,27 +136,9 @@ Excel → Pandas DataFrame → Random Sampling → Option Generation → Clue Co
 
 | File | Purpose |
 |------|---------|
-| `guess-animal-gradio-v2.py` | Main application (latest version with composite clues) |
-| `guess_the_animal.py` | Original implementation (text-only clues) |
+| `guess-animal-gradio.py` | Main application (latest version with composite clues) |
 | `guess-the-animal-dataset.xlsx` | Source data (4 category sheets) |
-| `CLAUDE.md` | Developer documentation and technical notes |
 | `README.md` | This file (user-facing documentation) |
-
----
-
-## Design Decisions
-
-### Why 4 Options (Not 5)?
-Radio buttons with 4 options fit cleanly in a single row without wrapping, creating a more polished visual experience.
-
-### Why Composite Clues?
-Combining multiple attributes into fluent sentences:
-- Reduces cognitive load (3 clues vs 5-8 fragmented fields)
-- Mimics natural identification thought processes
-- Creates more engaging narrative flow
-
-### Why Hide Image Until End?
-Prevents visual bias, encourages attribute-based reasoning, and creates satisfying reveal moment.
 
 ---
 
@@ -160,14 +156,6 @@ Prevents visual bias, encourages attribute-based reasoning, and creates satisfyi
 ### Styling
 Custom CSS can be modified in the `gr.Blocks(css="...")` section (line 442).
 
----
-
-## Known Limitations
-
-1. **Image URLs**: Some images may fail to load due to access restrictions (403 errors)
-2. **Dataset Size**: Categories require ≥4 entries for option generation
-3. **No Persistence**: Scores reset on browser refresh (no database backend)
-4. **Mobile Layout**: Radio buttons may stack on narrow screens
 
 ---
 
@@ -189,18 +177,6 @@ pandas>=2.0.0
 gradio>=6.0.0
 openpyxl>=3.1.0
 ```
-
----
-
-## Project Context
-
-This project was developed as an educational tool to demonstrate:
-- Interactive data exploration with Gradio
-- Natural language generation from structured data
-- Progressive disclosure UX patterns
-- Session state management in web applications
-
-Ideal for data science portfolios showcasing practical applications of classification datasets.
 
 ---
 
@@ -227,5 +203,3 @@ MIT License - feel free to use this project for educational purposes, portfolio 
 - Inspired by educational quiz formats and species identification guides
 
 ---
-
-**Developer Note**: See `CLAUDE.md` for technical implementation details, architecture decisions, and development notes.
