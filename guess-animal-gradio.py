@@ -326,6 +326,7 @@ def start_round(category: str, state: dict | None):
     state = {
         "category": category,
         "row": row,
+        "guess_count": 0, 
         "answer": correct,
         "options": options,
         "clue_index": 0,
@@ -388,9 +389,12 @@ def submit_guess(selected: str, chat: list, state: dict):
 
     correct = state["answer"]
     chat = (chat or []) + [as_msg("user", f"My guess: {selected}")]
+    state["guess_count"] = state.get("guess_count", 0) + 1                                                                                                        
+
 
     # Correct answer
     if safe_str(selected).lower() == safe_str(correct).lower():
+        guess_cnt = state['guess_count']
         clues_used = max(1, state.get("clue_index", 0))
         pts = points_for_clues_used(clues_used)
 
@@ -402,7 +406,7 @@ def submit_guess(selected: str, chat: list, state: dict):
             as_msg(
                 "assistant",
                 f"✅ Correct! **{correct}**\n\n"
-                f"Points: **+{pts}** (you used {clues_used} clue(s))\n\n"
+                f"Points: **+{pts}** (you used {clues_used} clue(s) and made {guess_cnt} guess(es))\n\n"
 #                f"{fact_card_md(state)}\n\n"
                 "Click **New Round** to play again."
             )
@@ -549,4 +553,4 @@ demo.launch(css="""
     #submit-guess-btn:hover {
         background: linear-gradient(to right, #059669, #047857) !important;
     }
-""", server_name="0.0.0.0")  # share=True for public access
+""", share=True , server_name="0.0.0.0")  # share=True for public access
