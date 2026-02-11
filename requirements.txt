@@ -1,0 +1,10 @@
+# Minimum requirements for Animal Guessing Game
+
+# UI framework
+gradio>=5.0.0
+
+# Data handling
+pandas>=2.0.0
+
+# Excel file reading (required by pandas for .xlsx files)
+openpyxl>=3.1.0
